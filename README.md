@@ -1,2 +1,2 @@
 # cryptosteganography
- This aims nothing. just for fun
+ For college mini project
