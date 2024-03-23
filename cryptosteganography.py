@@ -4,7 +4,6 @@ from PIL import Image
 # Convert encoding data into 8-bit binary
 # form using ASCII value of characters
 def genData(data):
-
         # list of binary codes
         # of given data
         newd = []
@@ -16,7 +15,6 @@ def genData(data):
 # Pixels are modified according to the
 # 8-bit binary data and finally returned
 def modPix(pix, data):
-
     datalist = genData(data)
     lendata = len(datalist)
     imdata = iter(pix)
