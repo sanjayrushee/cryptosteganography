@@ -1,6 +1,5 @@
 from PIL import Image
 
-main()
 
 # Convert encoding data into 8-bit binary
 # form using ASCII value of characters
