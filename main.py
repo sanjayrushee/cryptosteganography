@@ -7,7 +7,7 @@ from PIL import Image, ImageTk
 def genData(data):
     newd = []
     for i in data:
-        newd.append(format(ord(i), '08b'))
+        newd.append(format(i, '08b'))
     return newd
 
 # Pixels are modified according to the 8-bit binary data and finally returned
@@ -53,20 +53,22 @@ def encode_enc(newimg, data):
 def encode():
     img_path = filedialog.askopenfilename(title="Select Image")
     image = Image.open(img_path, 'r')
-    image.show()
-    if len(entry_encode_data.get()) == 0:
-        raise ValueError('Data is empty')
+
+    file_path = filedialog.askopenfilename(title="Select File")
+    file = open(file_path, 'rb')
+    data = file.read()
+
     newimg = image.copy()
-    encode_enc(newimg, entry_encode_data.get())
-    new_img_name = filedialog.asksaveasfilename(title="Save Image As", filetypes=(("PNG files", "*.png"), ("JPEG files", "*.jpg"), ("All files", "*.*")))
+    encode_enc(newimg, data)
+    new_img_name = filedialog.asksaveasfilename(title="Save Image As", filetypes=(("PNG files", "*.png"), ("JPEG files", "*.jpg"),("All files", "*.*")))
     newimg.save(new_img_name)
-    entry_encode_data.delete(0, tk.END)  # Clear the encoded text entry
+    #entry_encode_data.delete(0, tk.END)  # Clear the encoded text entry
 
 
 def decode():
     img_path = filedialog.askopenfilename(title="Select Image")
     image = Image.open(img_path, 'r')
-    data = ''
+    data = []
     imgdata = iter(image.getdata())
     while True:
         pixels = [value for value in imgdata.__next__()[:3] + imgdata.__next__()[:3] + imgdata.__next__()[:3]]
@@ -76,12 +78,18 @@ def decode():
                 binstr += '0'
             else:
                 binstr += '1'
-        data += chr(int(binstr, 2))
+        
+        data += int(binstr, 2).to_bytes(1, byteorder='big')
         if (pixels[-1] % 2 != 0):
             break
-    decoded_label.config(text="Decoded Data: " + data)
+    #decoded_label.config(text="Decoded Data: " + data)
+    file_path = filedialog.asksaveasfilename(title="Save File As", filetypes=(("PNG files", "*.png"), ("JPEG files", "*.jpg"),("All files", "*.*")))
+    file = open(file_path, 'wb')
+    data = bytearray(data)
+    file.write(data)
 
-root = tk.Tk()
+decode()
+'''root = tk.Tk()
 root.title("Steganography")
 root.geometry("1360x710")
 root.config(bg="#F0F0F0")
@@ -104,4 +112,4 @@ decoded_label.place(x=469, y=512)
 entry_encode_data = tk.Entry(root,font=("Helvetica", 12))
 entry_encode_data.place(x=390, y=204, width=620, height=40)
 
-root.mainloop()
+root.mainloop()'''
