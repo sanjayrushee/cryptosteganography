@@ -93,10 +93,9 @@ def decode():
 root = tk.Tk()
 root.title("Steganography")
 root.geometry("1360x710")
-root.config(bg="#1EB07B")
 
 bg_image = PhotoImage(file="./templates/background.png")
-background_label = Label(root, image=bg_image)
+background_label = Label(root, image=bg_image,bg="#1EB07B")
 background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
 encodebtn = PhotoImage(file="./templates/encode.png")
