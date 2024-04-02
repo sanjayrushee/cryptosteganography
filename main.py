@@ -63,6 +63,7 @@ def encode():
     new_img_name = filedialog.asksaveasfilename(title="Save Image As", filetypes=(("PNG files", "*.png"), ("JPEG files", "*.jpg"),("All files", "*.*")))
     newimg.save(new_img_name)
     #entry_encode_data.delete(0, tk.END)  # Clear the encoded text entry
+    
 
 
 def decode():
@@ -88,11 +89,11 @@ def decode():
     data = bytearray(data)
     file.write(data)
 
-decode()
-'''root = tk.Tk()
+
+root = tk.Tk()
 root.title("Steganography")
 root.geometry("1360x710")
-root.config(bg="#F0F0F0")
+root.config(bg="#1EB07B")
 
 bg_image = PhotoImage(file="./templates/background.png")
 background_label = Label(root, image=bg_image)
@@ -100,16 +101,12 @@ background_label.place(x=0, y=0, relwidth=1, relheight=1)
 
 encodebtn = PhotoImage(file="./templates/encode.png")
 button_encode = tk.Button(image=encodebtn, command=encode, bd=0, bg="#AEE2BA", activebackground="#AEE2BA")
-button_encode.place(x=533, y=300)
+button_encode.place(x=534, y=288)
 
 decodebtn = PhotoImage(file="./templates/decode.png")
 button_decode = tk.Button(image=decodebtn, command=decode,bd=0, bg="#AEE2BA", activebackground="#AEE2BA")
 button_decode.place(x=535, y=406)
 
-decoded_label = tk.Label(root, text="", bg="#AEE2BA",font=("Helvetica", 14))
-decoded_label.place(x=469, y=512)
 
-entry_encode_data = tk.Entry(root,font=("Helvetica", 12))
-entry_encode_data.place(x=390, y=204, width=620, height=40)
 
-root.mainloop()'''
+root.mainloop()
